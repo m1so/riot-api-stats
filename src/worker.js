@@ -7,7 +7,7 @@ const receiver = zmq.socket('pull')
 const sender = zmq.socket('push')
 
 export default class Worker {
-  constructor({ ports = {}, processing = {}, onSuccess = null, onError = null }) {
+  constructor({ ports = {}, processing = {}, onSuccess = null, onError = null } = {}) {
     this.incomingPort = ports.incoming || 12345
     this.outgoingPort = ports.outgoing || 12346
 

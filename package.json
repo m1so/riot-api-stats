@@ -1,0 +1,33 @@
+{
+  "name": "riot-api-stats",
+  "version": "0.0.1",
+  "description": "Riot API Stats service",
+  "main": "./dist/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "build": "babel src --out-dir dist",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "riot-api",
+    "league-of-legends",
+    "stats-api"
+  ],
+  "author": "Michal Baumgartner <michal@baumgartner.io>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.16.1",
+    "bluebird": "^3.5.0",
+    "zmq": "^2.15.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.3.3",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}

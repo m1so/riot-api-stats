@@ -1,0 +1,25 @@
+{
+  "name": "riot-api-stats-examples",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Example usage of the 'stats' microservice",
+  "scripts": {
+    "start": "node server.js",
+    "worker": "babel-node worker.js",
+    "cluster": "babel-node cluster.js"
+  },
+  "keywords": [],
+  "author": "Michal Baumgartner <michal@baumgartner.io>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "socket.io": "^1.7.3",
+    "uuid": "^3.0.1",
+    "zmq": "^2.15.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.3.3"
+  }
+}

@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "standard",
+    "installedESLint": true,
+    "plugins": [
+        "standard"
+    ],
+    "parserOptions": {
+        "parser": "babel-eslint",
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-const-assign": "warn",
+        "no-this-before-super": "warn",
+        "no-undef": "warn",
+        "no-unreachable": "warn",
+        "constructor-super": "warn",
+        "space-before-function-paren": "off",
+        "comma-dangle": "off",
+        "valid-typeof": "warn"
+    }
+}

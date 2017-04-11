@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Example app</title>
+  </head>
+  <body>
+    <p>Check console for incoming sockets</p>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      (() => {
+        var socket = io.connect()
+        socket.on('stats', function onStatsReceived(msg) {
+          console.log(msg)
+        })
+      })()
+    </script>
+  </body>
+</html>

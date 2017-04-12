@@ -1,13 +1,35 @@
 import Matchlist from './matchlist'
 import Matches from './matches'
 import stats from './stats'
-import zmq from 'zmq'
+import * as zmq from 'zmq'
 
 const receiver = zmq.socket('pull')
 const sender = zmq.socket('push')
 
+export interface WorkerConfig {
+  ports?: {
+    incoming?: number,
+    outgoing?: number,
+  },
+  processing?: {
+    matchlist?: (summonerId: number, region: string, matchlist: object, metadata: object) => any,
+    matches?: (region: string, matches: object) => any,
+    stats?: (summonerId: number, region: string, matches: object) => any,
+  },
+  onError?: (error: Error) => void,
+  onSuccess?: () => void,
+}
+
 export default class Worker {
-  constructor({ ports = {}, processing = {}, onSuccess = null, onError = null } = {}) {
+  private incomingPort: number
+  private outgoingPort: number
+  private onMatchlist: (summonerId: number, region: string, matchlist: object, metadata: object) => any
+  private onMatches: (region: string, matches: object) => any
+  private onStats: (summonerId: number, region: string, matches: object) => any
+  private onSuccess: () => void
+  private onError: (error: Error) => void
+
+  constructor({ ports = {}, processing = {}, onSuccess = null, onError = null }: WorkerConfig = {}) {
     this.incomingPort = ports.incoming || 12345
     this.outgoingPort = ports.outgoing || 12346
 
@@ -22,7 +44,7 @@ export default class Worker {
     receiver.connect(`tcp://127.0.0.1:${this.incomingPort}`)
     sender.connect(`tcp://127.0.0.1:${this.outgoingPort}`)
 
-    receiver.on('message', async (data) => {
+    receiver.on('message', async (data: any) => {
       const startTime = process.hrtime()
       data = JSON.parse(data)
       const summonerId = parseInt(data.summonerId)

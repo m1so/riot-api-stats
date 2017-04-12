@@ -1,8 +1,22 @@
 import axios from 'axios'
-import querystring from 'querystring'
+import * as querystring from 'querystring'
+
+export interface MatchlistOptions {
+  beginTime?: string | number
+  beginIndex?: string | number
+  endTime?: string | number
+  endIndex?: string | number
+  seasons?: string | Array<string>
+}
 
 export default class Matchlist {
-  constructor(summonerId, region = 'euw', options = {}) {
+  private summonerId: number
+  private region: string
+  private options?: MatchlistOptions
+  private metadata: any
+  private matchlist: any
+
+  constructor(summonerId, region = 'euw', options: MatchlistOptions = {}) {
     this.summonerId = summonerId
     this.region = region
     this.options = Object.assign(options.beginTime || options.beginIndex || options.endTime || options.endIndex || options.seasons ? {} : {

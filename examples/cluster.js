@@ -1,6 +1,6 @@
 import cluster from 'cluster'
 import os from 'os'
-import Worker from '../src/worker'
+import Worker from '../dist/worker'
 
 // Load the environment variables
 require('dotenv').config()
